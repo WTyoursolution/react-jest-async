@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { fetchData } from './apiService';
 
 export default function Pokemon({ name }) {
 const [data, setData] = useState({});
@@ -7,7 +8,7 @@ const [data, setData] = useState({});
         async function load() {
             try {
                 const pokemon = await fetchData(
-                    "pokeapi.co/api/v2/pokemon/" + name
+                    "https://pokeapi.co/api/v2/pokemon/" + name
                 );
                 setData(pokemon);
             } catch (error) {
@@ -18,6 +19,8 @@ const [data, setData] = useState({});
         console.log(data)
     }, [name]);
   return (
-<h1>{data.name}</h1>
-)
+<div>
+    <h1>{data.name}</h1>
+</div>
+);
 }
